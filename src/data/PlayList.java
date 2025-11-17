@@ -18,11 +18,19 @@ public class PlayList {
     }
 
     public Film playFilm() {
-        return playLists.removeFirst();
+        if (hasNext()) {
+            return playLists.removeFirst();
+        }else{
+            return null;
+        }
     }
 
     public Film nextFilm() {
-        return playLists.get(1);
+        if(hasNext()) {
+            return playLists.get(1);
+        } else{
+            return null;
+        }
     }
 
     public int fullPlayList() {

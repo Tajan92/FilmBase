@@ -43,7 +43,7 @@ return playLists;
 
     public void printPlayList() {
         for (Film playList : playLists) {
-            System.out.println(playList.getTitle()+" "+playList.getYear());
+            System.out.println(playList.getTitle()+" "+playList.getYear()+" : "+playList.getGenre());
         }
     }
     private boolean hasFilm (Film film){

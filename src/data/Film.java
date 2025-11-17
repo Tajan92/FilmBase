@@ -2,6 +2,7 @@ package data;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Film {
     private String title;
@@ -15,10 +16,10 @@ public class Film {
 
     }
 
-    public Film(String title, int year, Genre genre) {
+    public Film(String title, int year, Genre... genres) {
         this.title = title;
         this.year = year;
-        this.genres.add(genre);
+        this.genres.addAll(List.of(genres));
     }
 
     public Collection<Genre> getGenres() {
@@ -50,6 +51,9 @@ public class Film {
             return true;
         }
         return false;
+    }
+    public void addGenre(Genre genre){
+        this.genres.add(genre);
     }
 }
 

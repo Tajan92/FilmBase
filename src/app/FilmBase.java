@@ -79,15 +79,15 @@ public class FilmBase {
     }
 
     private void initFilms() {
-        allFilms.add(new Film("The Godfather", 1972, Genre.Crime));
-        allFilms.add(new Film("The Shawshank Redemption", 1994,Genre.Drama));
-        allFilms.add(new Film("Schindler's List", 1993, Genre.History));
-        allFilms.add(new Film("Raging Bull", 1980,Genre.Drama));
-        allFilms.add(new Film("Casablanca", 1942, Genre.Romance));
-        allFilms.add(new Film("Citizen Kane", 1941, Genre.Action));
-        allFilms.add(new Film("Gone With The Wind", 1939, Genre.Drama));
-        allFilms.add(new Film("The Wizard Of Oz", 1939, Genre.Adventure));
+        allFilms.add(new Film("The Godfather", 1972, Genre.Crime, Genre.Action));
+        allFilms.add(new Film("The Shawshank Redemption", 1994, Genre.Drama, Genre.Action));
+        allFilms.add(new Film("Schindler's List", 1993, Genre.History, Genre.Action));
+        allFilms.add(new Film("Raging Bull", 1980, Genre.Drama, Genre.Sport));
+        allFilms.add(new Film("Casablanca", 1942, Genre.Romance, Genre.Drama));
+        allFilms.add(new Film("Citizen Kane", 1941, Genre.Adventure, Genre.Action));
+        allFilms.add(new Film("Gone With The Wind", 1939, Genre.History, Genre.Biography));
+        allFilms.add(new Film("The Wizard Of Oz", 1939, Genre.Adventure, Genre.Comedy));
         allFilms.add(new Film("One Flew Over The Cuckoo's Nest", 1975, Genre.Comedy));
-        allFilms.add(new Film("Lawrence Of Arabia", 1962, Genre.Biography));
+        allFilms.add(new Film("Lawrence Of Arabia", 1962, Genre.History, Genre.Biography));
     }
 }

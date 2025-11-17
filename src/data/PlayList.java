@@ -1,26 +1,24 @@
 package data;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PlayList {
-    List<Film> playLists = new ArrayList<>();
-
+    List<Film> films = new ArrayList<>();
 
     public boolean addFilm(Film film) {
         if (hasFilm(film)) {
             System.out.println(film.getTitle() + " is already on the playlist");
             return false;
         } else {
-            playLists.add(film);
+            films.add(film);
             return true;
         }
     }
 
     public Film playFilm() {
         if (hasNext()) {
-            return playLists.removeFirst();
+            return films.removeFirst();
         } else {
             return null;
         }
@@ -28,28 +26,28 @@ public class PlayList {
 
     public Film nextFilm() {
         if (hasNext()) {
-            return playLists.get(1);
+            return films.get(1);
         } else {
             return null;
         }
     }
 
     public int fullPlayList() {
-        return playLists.size();
+        return films.size();
     }
 
     public List<Film> getPlayList() {
-        return playLists;
+        return films;
     }
 
     public void printPlayList() {
-        for (Film playList : playLists) {
+        for (Film playList : films) {
             System.out.println(playList.getTitle() + " " + playList.getYear() + " : " + playList.getGenres());
         }
     }
 
     private boolean hasFilm(Film film) {
-        if (playLists.contains(film)) {
+        if (films.contains(film)) {
             return true;
         }
         return false;
@@ -57,7 +55,7 @@ public class PlayList {
 
     public boolean hasNext() {
         try {
-            if (playLists.contains(playLists.getFirst())) {
+            if (films.contains(films.getFirst())) {
                 return true;
             } else {
                 return false;
@@ -68,14 +66,9 @@ public class PlayList {
     }
 
     public void removeGenre(Genre genre) {
-        Iterator<Film> iterator = playLists.iterator();
-        while (iterator.hasNext()) {
-            Film film = iterator.next();
-            if (film.hasGenre(genre)) {
-                iterator.remove();
-            }
-        }
+        films.removeIf(film -> film.hasGenre(genre));
     }
+
 }
 
 

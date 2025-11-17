@@ -1,20 +1,41 @@
 package app;
 
 import data.Film;
+import data.PlayList;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class FilmBase {
-    private Collection<Film> allFilms = new ArrayList<>();
+    private List<Film> allFilms = new ArrayList<>();
+    private PlayList playListsTest = new PlayList();
 
+    public void testPlayList(){
+        playListsTest.addFilm(allFilms.get(0));
+        playListsTest.addFilm(allFilms.get(1));
+        playListsTest.addFilm(allFilms.get(2));
+        playListsTest.printPlayList();
+        System.out.println();
+        System.out.println(playListsTest.nextFilm().getTitle()+" "+playListsTest.nextFilm().getYear());
+        playListsTest.playFilm();
+        System.out.println();
+        playListsTest.printPlayList();
+        System.out.println();
+        playListsTest.playFilm();
+        playListsTest.printPlayList();
+        System.out.println();
+        playListsTest.playFilm();
+        playListsTest.printPlayList();
+    }
     public FilmBase() {
     }
 
     public void start(){
         System.out.println("FilmBasen er startet");
         initFilms();
-        printList(allFilms);
+       // printList(allFilms);
+        testPlayList();
     }
 
     private void printList(Collection<Film> films){

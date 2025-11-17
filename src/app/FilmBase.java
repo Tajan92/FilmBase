@@ -17,8 +17,11 @@ public class FilmBase {
         playListsTest.addFilm(allFilms.get(1));
         playListsTest.addFilm(allFilms.get(1));
         playListsTest.addFilm(allFilms.get(2));
-
-        while (playListsTest.hasNext()) {
+        playListsTest.printPlayList();
+        playListsTest.removeGenre(Genre.Crime);
+        System.out.println("==After Crime Removal==");
+        playListsTest.printPlayList();
+        /*while (playListsTest.hasNext()) {
             System.out.println();
 
             System.out.println(playListsTest.playFilm().getTitle());
@@ -26,7 +29,13 @@ public class FilmBase {
             System.out.println();
 
             playListsTest.printPlayList();
-        }
+
+            playListsTest.removeGenre(Genre.Crime);
+
+            System.out.println();
+
+            playListsTest.printPlayList();
+        }*/
 
         /*playListsTest.printPlayList();
         System.out.println();
@@ -50,6 +59,17 @@ public class FilmBase {
         initFilms();
         // printList(allFilms);
         testPlayList();
+        //testFiltering();
+    }
+
+    private void testFiltering() {
+        PlayList playList = new PlayList();
+        playList.addFilm(allFilms.get(0));
+        playList.addFilm(allFilms.get(1));
+        playList.addFilm(allFilms.get(2));
+        playList.addFilm(allFilms.get(3));
+
+        playList.printPlayList();
     }
 
     private void printList(Collection<Film> films) {

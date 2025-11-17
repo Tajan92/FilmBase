@@ -1,27 +1,32 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Film {
-    String title;
-    int year;
-    Genre genre;
+    private String title;
+    private int year;
+    public Genre genre;
+    private Collection<Genre> genres = new ArrayList<>();
 
     public Film(String title, int year) {
         this.title = title;
         this.year = year;
+
     }
 
     public Film(String title, int year, Genre genre) {
         this.title = title;
         this.year = year;
-        this.genre = genre;
+        this.genres.add(genre);
     }
 
-    public Genre getGenre() {
-        return genre;
+    public Collection<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenres(Collection<Genre> genres) {
+        this.genres = genres;
     }
 
     public String getTitle() {
@@ -39,4 +44,12 @@ public class Film {
     public void setYear(int age) {
         this.year = age;
     }
+
+    public boolean hasGenre(Genre genre) {
+        if (genres.contains(genre)) {
+            return true;
+        }
+        return false;
+    }
 }
+

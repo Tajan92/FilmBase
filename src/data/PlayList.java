@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class PlayList {
@@ -8,8 +9,8 @@ public class PlayList {
 
 
     public boolean addFilm(Film film) {
-        if(hasFilm(film)){
-            System.out.println(film.getTitle()+" is already on the playlist");
+        if (hasFilm(film)) {
+            System.out.println(film.getTitle() + " is already on the playlist");
             return false;
         } else {
             playLists.add(film);
@@ -20,15 +21,15 @@ public class PlayList {
     public Film playFilm() {
         if (hasNext()) {
             return playLists.removeFirst();
-        }else{
+        } else {
             return null;
         }
     }
 
     public Film nextFilm() {
-        if(hasNext()) {
+        if (hasNext()) {
             return playLists.get(1);
-        } else{
+        } else {
             return null;
         }
     }
@@ -38,23 +39,25 @@ public class PlayList {
     }
 
     public List<Film> getPlayList() {
-return playLists;
+        return playLists;
     }
 
     public void printPlayList() {
         for (Film playList : playLists) {
-            System.out.println(playList.getTitle()+" "+playList.getYear()+" : "+playList.getGenre());
+            System.out.println(playList.getTitle() + " " + playList.getYear() + " : " + playList.getGenres());
         }
     }
-    private boolean hasFilm (Film film){
-        if (playLists.contains(film)){
+
+    private boolean hasFilm(Film film) {
+        if (playLists.contains(film)) {
             return true;
         }
         return false;
     }
-    public boolean hasNext(){
+
+    public boolean hasNext() {
         try {
-            if (playLists.contains(playLists.getFirst())){
+            if (playLists.contains(playLists.getFirst())) {
                 return true;
             } else {
                 return false;
@@ -63,4 +66,16 @@ return playLists;
             return false;
         }
     }
+
+    public void removeGenre(Genre genre) {
+        Iterator<Film> iterator = playLists.iterator();
+        while (iterator.hasNext()) {
+            Film film = iterator.next();
+            if (film.hasGenre(genre)) {
+                iterator.remove();
+            }
+        }
+    }
 }
+
+

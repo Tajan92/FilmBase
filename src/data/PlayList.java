@@ -7,8 +7,14 @@ public class PlayList {
     List<Film> playLists = new ArrayList<>();
 
 
-    public void addFilm(Film film) {
-        playLists.add(film);
+    public boolean addFilm(Film film) {
+        if(hasFilm(film)){
+            System.out.println(film.getTitle()+" is already on the playlist");
+            return false;
+        } else {
+            playLists.add(film);
+            return true;
+        }
     }
 
     public Film playFilm() {
@@ -31,5 +37,11 @@ return playLists;
         for (Film playList : playLists) {
             System.out.println(playList.getTitle()+" "+playList.getYear());
         }
+    }
+    private boolean hasFilm (Film film){
+        if (playLists.contains(film)){
+            return true;
+        }
+        return false;
     }
 }

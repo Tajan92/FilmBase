@@ -14,7 +14,9 @@ public class FilmBase {
     public void testPlayList(){
         playListsTest.addFilm(allFilms.get(0));
         playListsTest.addFilm(allFilms.get(1));
+        playListsTest.addFilm(allFilms.get(1));
         playListsTest.addFilm(allFilms.get(2));
+
         playListsTest.printPlayList();
         System.out.println();
         System.out.println(playListsTest.nextFilm().getTitle()+" "+playListsTest.nextFilm().getYear());

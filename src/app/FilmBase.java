@@ -11,13 +11,20 @@ public class FilmBase {
     private List<Film> allFilms = new ArrayList<>();
     private PlayList playListsTest = new PlayList();
 
-    public void testPlayList(){
+    public void testPlayList() {
         playListsTest.addFilm(allFilms.get(0));
         playListsTest.addFilm(allFilms.get(1));
         playListsTest.addFilm(allFilms.get(1));
         playListsTest.addFilm(allFilms.get(2));
 
-        playListsTest.printPlayList();
+        while (playListsTest.hasNext()) {
+            System.out.println();
+
+            System.out.println(playListsTest.playFilm().getTitle());
+
+            System.out.println();
+        }
+        /*playListsTest.printPlayList();
         System.out.println();
         System.out.println(playListsTest.nextFilm().getTitle()+" "+playListsTest.nextFilm().getYear());
         playListsTest.playFilm();
@@ -28,25 +35,26 @@ public class FilmBase {
         playListsTest.printPlayList();
         System.out.println();
         playListsTest.playFilm();
-        playListsTest.printPlayList();
+        playListsTest.printPlayList();*/
     }
+
     public FilmBase() {
     }
 
-    public void start(){
+    public void start() {
         System.out.println("FilmBasen er startet");
         initFilms();
-       // printList(allFilms);
+        // printList(allFilms);
         testPlayList();
     }
 
-    private void printList(Collection<Film> films){
+    private void printList(Collection<Film> films) {
         for (Film film : films) {
-            System.out.println(film.getTitle()+" "+film.getYear());
+            System.out.println(film.getTitle() + " " + film.getYear());
         }
     }
 
-    private void initFilms(){
+    private void initFilms() {
         allFilms.add(new Film("The Godfather", 1972));
         allFilms.add(new Film("The Shawshank Redemption", 1994));
         allFilms.add(new Film("Schindler's List", 1993));

@@ -44,4 +44,15 @@ return playLists;
         }
         return false;
     }
+    public boolean hasNext(){
+        try {
+            if (playLists.contains(playLists.getFirst())){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

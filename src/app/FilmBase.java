@@ -12,8 +12,15 @@ public class FilmBase {
     }
 
     public void start(){
-        initFilms();
         System.out.println("FilmBasen er startet");
+        initFilms();
+        printList(allFilms);
+    }
+
+    private void printList(Collection<Film> films){
+        for (Film film : films) {
+            System.out.println(film.getTitle()+" "+film.getYear());
+        }
     }
 
     private void initFilms(){

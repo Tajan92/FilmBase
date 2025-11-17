@@ -17,11 +17,11 @@ public class Film {
         this.title = title;
     }
 
-    public int getAge() {
+    public int getYear() {
         return year;
     }
 
-    public void setAge(int age) {
+    public void setYear(int age) {
         this.year = age;
     }
 }

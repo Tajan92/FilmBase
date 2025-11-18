@@ -8,18 +8,18 @@ import java.util.*;
 
 public class FilmBase {
     private List<Film> allFilms = new ArrayList<>();
-    private PlayList playListsTest = new PlayList();
+    private PlayList playLists = new PlayList();
 
 
     public void testPlayList() {
-        playListsTest.addFilm(allFilms.get(0));
-        playListsTest.addFilm(allFilms.get(1));
-        playListsTest.addFilm(allFilms.get(1));
-        playListsTest.addFilm(allFilms.get(2));
-        playListsTest.printPlayList();
-        playListsTest.removeGenre(Genre.Crime);
+        playLists.addFilm(allFilms.get(0));
+        playLists.addFilm(allFilms.get(1));
+        playLists.addFilm(allFilms.get(1));
+        playLists.addFilm(allFilms.get(2));
+        playLists.printPlayList();
+        playLists.removeGenre(Genre.Crime);
         System.out.println("==After Crime Removal==");
-        playListsTest.printPlayList();
+        playLists.printPlayList();
         /*while (playListsTest.hasNext()) {
             System.out.println();
 
@@ -112,15 +112,18 @@ public class FilmBase {
     }
 
     private void initFilms() {
-        allFilms.add(new Film("The Godfather", 1972, Genre.Crime, Genre.Action));
-        allFilms.add(new Film("The Shawshank Redemption", 1994, Genre.Drama, Genre.Action));
-        allFilms.add(new Film("Schindler's List", 1993, Genre.History, Genre.Action));
-        allFilms.add(new Film("Raging Bull", 1980, Genre.Drama, Genre.Sport));
-        allFilms.add(new Film("Casablanca", 1942, Genre.Romance, Genre.Drama));
-        allFilms.add(new Film("Citizen Kane", 1941, Genre.Adventure, Genre.Action));
-        allFilms.add(new Film("Gone With The Wind", 1939, Genre.History, Genre.Biography));
-        allFilms.add(new Film("The Wizard Of Oz", 1939, Genre.Adventure, Genre.Comedy));
-        allFilms.add(new Film("One Flew Over The Cuckoo's Nest", 1975, Genre.Comedy));
-        allFilms.add(new Film("Lawrence Of Arabia", 1962, Genre.History, Genre.Biography));
+        addFilm(new Film("The Godfather", 1972, Genre.Crime, Genre.Action));
+        addFilm(new Film("The Shawshank Redemption", 1994, Genre.Drama, Genre.Action));
+        addFilm(new Film("Schindler's List", 1993, Genre.History, Genre.Action));
+        addFilm(new Film("Raging Bull", 1980, Genre.Drama, Genre.Sport));
+        addFilm(new Film("Casablanca", 1942, Genre.Romance, Genre.Drama));
+        addFilm(new Film("Citizen Kane", 1941, Genre.Adventure, Genre.Action));
+        addFilm(new Film("Gone With The Wind", 1939, Genre.History, Genre.Biography));
+        addFilm(new Film("The Wizard Of Oz", 1939, Genre.Adventure, Genre.Comedy));
+        addFilm(new Film("One Flew Over The Cuckoo's Nest", 1975, Genre.Comedy));
+        addFilm(new Film("Lawrence Of Arabia", 1962, Genre.History, Genre.Biography));
+    }
+    private void addFilm(Film film){
+        allFilms.add(film);
     }
 }

@@ -1,6 +1,5 @@
-package data;
+package FilmBase.data;
 
-import javax.sound.sampled.EnumControl;
 import java.util.*;
 
 public class Film {
@@ -14,11 +13,16 @@ public class Film {
         this.year = year;
 
     }
-
     public Film(String title, int year, Genre... genres) {
         this.title = title;
         this.year = year;
         this.genres.addAll(List.of(genres));
+    }
+
+    public Film(String title, int year, Collection<Genre> genres) {
+        this.title = title;
+        this.year = year;
+        this.genres.addAll(genres);
     }
 
     public Collection<Genre> getGenres() {

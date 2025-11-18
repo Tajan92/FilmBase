@@ -1,6 +1,6 @@
-import app.FilmBase;
+package FilmBase;
 
-import java.util.*;
+import FilmBase.app.FilmBase;
 
 public class Main {
     static void main() {

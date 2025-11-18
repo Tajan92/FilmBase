@@ -1,15 +1,19 @@
-package app;
+package FilmBase.app;
 
-import data.Film;
-import data.Genre;
-import data.PlayList;
+import FilmBase.data.Film;
+import FilmBase.data.Genre;
+import FilmBase.data.PlayList;
+import FilmBase.service.FilmFileParser;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class FilmBase {
     private List<Film> allFilms = new ArrayList<>();
     private PlayList playLists = new PlayList();
-
+    private Map<Genre, Collection <Film>> genreFilms = new TreeMap<>();
 
     public void testPlayList() {
         playLists.addFilm(allFilms.get(0));
@@ -60,7 +64,9 @@ public class FilmBase {
         // printList(allFilms);
         // testPlayList();
         //testFiltering();
-        countGenre();
+      //printGenres();
+      loadFilms();
+      printGenreStatistic();
     }
 
     private void countGenre() {
@@ -69,30 +75,6 @@ public class FilmBase {
             allGenres.addAll(film.getGenres());
         }
         System.out.println(allGenres);
-
-        Map<Genre, Collection <Film>> genreFilms = new TreeMap<>();
-
-
-        for (Film film : allFilms) {
-            for (Genre genre : film.getGenres()) {
-                Collection<Film>filmCollection = new ArrayList<>();
-                if (!genreFilms.containsKey(genre)) {
-                    filmCollection.add(film);
-                    genreFilms.put(genre, filmCollection);
-                }else{
-                    filmCollection = genreFilms.get(genre);
-                    filmCollection.add(film);
-                }
-            }
-        }
-
-        for (Genre genre : genreFilms.keySet()) {
-            System.out.println("Genre: "+genre);
-
-            for (Film film : genreFilms.get(genre)) {
-                System.out.println(" Film: " + film.getTitle() + " (" + film.getYear() + ")");
-            }
-        }
     }
 
     private void testFiltering() {
@@ -112,18 +94,55 @@ public class FilmBase {
     }
 
     private void initFilms() {
-        addFilm(new Film("The Godfather", 1972, Genre.Crime, Genre.Action));
-        addFilm(new Film("The Shawshank Redemption", 1994, Genre.Drama, Genre.Action));
-        addFilm(new Film("Schindler's List", 1993, Genre.History, Genre.Action));
-        addFilm(new Film("Raging Bull", 1980, Genre.Drama, Genre.Sport));
-        addFilm(new Film("Casablanca", 1942, Genre.Romance, Genre.Drama));
-        addFilm(new Film("Citizen Kane", 1941, Genre.Adventure, Genre.Action));
-        addFilm(new Film("Gone With The Wind", 1939, Genre.History, Genre.Biography));
-        addFilm(new Film("The Wizard Of Oz", 1939, Genre.Adventure, Genre.Comedy));
+        addFilm(new Film("The Godfather", 1972, Genre.Crime));
+        addFilm(new Film("The Shawshank Redemption", 1994, Genre.Drama));
+        addFilm(new Film("Schindler's List", 1993, Genre.History));
+        addFilm(new Film("Raging Bull", 1980, Genre.Drama));
+        addFilm(new Film("Casablanca", 1942, Genre.Romance));
+        addFilm(new Film("Citizen Kane", 1941, Genre.Adventure));
+        addFilm(new Film("Gone With The Wind", 1939, Genre.History));
+        addFilm(new Film("The Wizard Of Oz", 1939, Genre.Adventure));
         addFilm(new Film("One Flew Over The Cuckoo's Nest", 1975, Genre.Comedy));
-        addFilm(new Film("Lawrence Of Arabia", 1962, Genre.History, Genre.Biography));
+        addFilm(new Film("Lawrence Of Arabia", 1962, Genre.History));
+    }
+    private void printGenres(){
+        for (Genre genre : genreFilms.keySet()) {
+            System.out.println("Genre: "+genre);
+
+            for (Film film : genreFilms.get(genre)) {
+                System.out.println(" Film: " + film.getTitle() + " (" + film.getYear() + ")");
+            }
+        }
     }
     private void addFilm(Film film){
         allFilms.add(film);
+        for (Genre genre : film.getGenres()) {
+            Collection<Film>filmCollection = new ArrayList<>();
+            if (!genreFilms.containsKey(genre)) {
+                filmCollection.add(film);
+                genreFilms.put(genre, filmCollection);
+            }else{
+                filmCollection = genreFilms.get(genre);
+                filmCollection.add(film);
+            }
+        }
+    }
+    private void loadFilms(){
+        Path path = Path.of("film.txt");
+        try {
+            List<String> lines = Files.readAllLines(path);
+            for (String line : lines) {
+               // System.out.println(line);
+                FilmFileParser.createFilmFromLine(line);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void printGenreStatistic(){
+        System.out.println("Der er "+Genre.values().length+" genre");
+        for (Genre genre : Genre.values()) {
+            System.out.println("- "+genre.toString()+"\t: "+ genreFilms.getOrDefault(genre,List.of()).size() + " Film");
+        }
     }
 }

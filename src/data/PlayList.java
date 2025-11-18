@@ -67,6 +67,7 @@ public class PlayList {
 
     public void removeGenre(Genre genre) {
         films.removeIf(film -> film.hasGenre(genre));
+
     }
 
 }

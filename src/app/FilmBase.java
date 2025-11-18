@@ -4,13 +4,12 @@ import data.Film;
 import data.Genre;
 import data.PlayList;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class FilmBase {
     private List<Film> allFilms = new ArrayList<>();
     private PlayList playListsTest = new PlayList();
+
 
     public void testPlayList() {
         playListsTest.addFilm(allFilms.get(0));
@@ -52,14 +51,27 @@ public class FilmBase {
     }
 
     public FilmBase() {
+
     }
 
     public void start() {
         System.out.println("FilmBasen er startet");
         initFilms();
         // printList(allFilms);
-        testPlayList();
+        // testPlayList();
         //testFiltering();
+        countGenre();
+        getFilmFromGenre();
+    }
+
+    private void countGenre() {
+        Set<Genre> allGenres = new HashSet<>();
+        for (Film film : allFilms) {
+
+            allGenres.addAll(film.getGenres());
+
+        }
+        System.out.println(allGenres);
     }
 
     private void testFiltering() {
@@ -89,5 +101,22 @@ public class FilmBase {
         allFilms.add(new Film("The Wizard Of Oz", 1939, Genre.Adventure, Genre.Comedy));
         allFilms.add(new Film("One Flew Over The Cuckoo's Nest", 1975, Genre.Comedy));
         allFilms.add(new Film("Lawrence Of Arabia", 1962, Genre.History, Genre.Biography));
+    }
+    private void getFilmFromGenre(){
+        Map<Genre, Film> genreFilm = new HashMap<>();
+
+        for (Film film : allFilms) {
+            for (Genre genre : film.getGenres()) {
+              genreFilm.put(genre,film);
+            }
+
+        }
+
+        for (Genre genre : genreFilm.keySet()) {
+            System.out.println(genre);
+            Film film = genreFilm.get(genre);
+            System.out.println(film);
+        }
+
     }
 }

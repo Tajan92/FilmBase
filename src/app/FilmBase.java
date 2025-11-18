@@ -61,17 +61,38 @@ public class FilmBase {
         // testPlayList();
         //testFiltering();
         countGenre();
-        getFilmFromGenre();
     }
 
     private void countGenre() {
-        Set<Genre> allGenres = new HashSet<>();
+        Set<Genre> allGenres = new TreeSet<>();
         for (Film film : allFilms) {
-
             allGenres.addAll(film.getGenres());
-
         }
         System.out.println(allGenres);
+
+        Map<Genre, Collection <Film>> genreFilms = new TreeMap<>();
+
+
+        for (Film film : allFilms) {
+            for (Genre genre : film.getGenres()) {
+                Collection<Film>filmCollection = new ArrayList<>();
+                if (!genreFilms.containsKey(genre)) {
+                    filmCollection.add(film);
+                    genreFilms.put(genre, filmCollection);
+                }else{
+                    filmCollection = genreFilms.get(genre);
+                    filmCollection.add(film);
+                }
+            }
+        }
+
+        for (Genre genre : genreFilms.keySet()) {
+            System.out.println("Genre: "+genre);
+
+            for (Film film : genreFilms.get(genre)) {
+                System.out.println(" Film: " + film.getTitle() + " (" + film.getYear() + ")");
+            }
+        }
     }
 
     private void testFiltering() {
@@ -101,22 +122,5 @@ public class FilmBase {
         allFilms.add(new Film("The Wizard Of Oz", 1939, Genre.Adventure, Genre.Comedy));
         allFilms.add(new Film("One Flew Over The Cuckoo's Nest", 1975, Genre.Comedy));
         allFilms.add(new Film("Lawrence Of Arabia", 1962, Genre.History, Genre.Biography));
-    }
-    private void getFilmFromGenre(){
-        Map<Genre, Film> genreFilm = new HashMap<>();
-
-        for (Film film : allFilms) {
-            for (Genre genre : film.getGenres()) {
-              genreFilm.put(genre,film);
-            }
-
-        }
-
-        for (Genre genre : genreFilm.keySet()) {
-            System.out.println(genre);
-            Film film = genreFilm.get(genre);
-            System.out.println(film);
-        }
-
     }
 }
